@@ -1,4 +1,4 @@
-#workflow 2 with push event
+#workflow 2 with push event with more job steps
 
 name: Test Project
 #this workflow will run whenever we push a new commit to repo do the foll:
@@ -28,3 +28,7 @@ jobs:
       # we run tests after these are installed in the runner, running a regular cmd 
       - name: Run tests
         run : npm test
+
+
+
+        # failing workflows and analysing why: we break one of the tests
