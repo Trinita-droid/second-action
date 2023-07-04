@@ -1,0 +1,30 @@
+#workflow 2 with push event
+
+name: Test Project
+#this workflow will run whenever we push a new commit to repo do the foll:
+on:  push
+jobs:
+  test:
+    runs-on: windows-latest
+    steps: #step 1 is to download the code from guthub repo to the runner using actions. to do this we have another key building block provided by github
+      - name: Get code
+
+#action - performs frequent tasks. can build owr own actions
+#checkout action
+#to use an action we use 'uses' keyword'
+        uses: actions/checkout@v3 #define identifier of the action
+        # some actions require config that can be provided with 'with' kwd
+        # with :
+        #can control with repo to use under this, also change some settings.
+#step 2 to make sure we have node.js installed.  but to install manaully we can add a step:
+      - name : Install NodeJS
+        uses : actions/setup-node@v3 
+        with :
+          node-version: 18
+  #  install dependency for the 3rd step
+      - name : Install dependencies
+      # we need osme action to do this , we can also use, 'run npm ci
+        run: npm ci
+      # we run tests after these are installed in the runner, running a regular cmd 
+      - name: Run tests
+        run : npm test
