@@ -1,0 +1,10 @@
+
+name : Output information
+on: workflow_dispatch
+jobs:
+    info:
+        runs-on: windows-latest
+        steps:
+            # output some meta info thats auto passed into jobs and steps, this meta info is called context data- got info about trigger, runner
+         - name: Output Github context
+           run: echo "${{ toJSON(github) }}" #github is a reserved keyword under context
