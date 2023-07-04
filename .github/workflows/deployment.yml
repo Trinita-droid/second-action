@@ -1,6 +1,6 @@
 #workflow 2 with push event
 
-name: Test Project
+name: Deploy Project
 #this workflow will run whenever we push a new commit to repo do the foll:
 on:  push
 jobs:
@@ -28,3 +28,28 @@ jobs:
       # we run tests after these are installed in the runner, running a regular cmd 
       - name: Run tests
         run : npm test
+        # after hitting "git push" in terminal, this workflow will run in github because it is under the push event
+
+# job 2 : to deply and upload the code to a hosting server
+  deploy: 
+    runs-on: windows-latest
+    steps:  
+      - name : Get code
+        uses: actions/checkout@v3
+      - name: install npm
+        uses: actions/setup-node@v3
+        with:     
+          node-version : 18
+      - name: install dependencies
+        run: npm ci
+      - name: build project
+      # any project must be built before deployed
+        run : npm run build
+      # upload to some host
+      - name: Deploy
+        run: echo "Deploying.."
+
+        # jobs will run in parallel
+
+      
+    
