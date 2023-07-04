@@ -2,7 +2,7 @@
 
 name: Deploy Project
 #this workflow will run whenever we push a new commit to repo do the foll:
-on:  push
+on:  [push, workflow_dispatch] #to maually trigger the workflow add it as second event
 jobs:
   test:
     runs-on: windows-latest
@@ -49,7 +49,7 @@ jobs:
       - name: Deploy
         run: echo "Deploying.."
 
-        # jobs will run in parallel
+        # jobs will run in parallel if we specify " needs : prev test name under second job; for multiple jobs - needs : [job1, job2]"
 
       
     
