@@ -2,7 +2,7 @@
 
 name: Deploy Project
 #this workflow will run whenever we push a new commit to repo do the foll:
-on:  [push, workflow_dispatch] #to maually trigger the workflow add it as second event
+on:  push #to maually trigger the workflow add it as second event
 jobs:
   test:
     runs-on: windows-latest
